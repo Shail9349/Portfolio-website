@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(45deg, #0a0a0a, #3a4452);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.calculator {
+    background: #1a1a2e;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0px 5px 20px rgba(113, 115, 119, 0.5);
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #ff9500;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calculator form input {
+    border: 0;
+    outline: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: transparent;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin: 8px;
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.calculator form input:hover {
+    transform: scale(1.05);
+    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.1), 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.calculator form input:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+form .display {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+form .display input {
+    text-align: right;
+    flex: 1;
+    font-size: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.1), 
+                inset 5px 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 0 15px;
+    border-radius: 8px;
+    cursor: default;
+}
+
+form .display input:hover {
+    transform: none;
+    box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.1), 
+                inset 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+form input.equal {
+    width: 145px;
+    background: #ff9500;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+form input.operator {
+    color: #ff9500;
+    font-weight: bold;
+}
+
+form input.function {
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+form input.number {
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .calculator {
+        padding: 15px;
+    }
+    
+    .calculator form input {
+        width: 50px;
+        height: 50px;
+        margin: 6px;
+        font-size: 18px;
+    }
+    
+    form input.equal {
+        width: 125px;
+    }
+    
+    form .display input {
+        font-size: 35px;
+    }
+}

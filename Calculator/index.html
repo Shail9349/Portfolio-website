@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <div class="calculator-header">Secure Calculator</div>
+            <form>
+                <div class="display">
+                    <input type="text" name="display" readonly>
+                </div>
+                <div>
+                    <input type="button" value="AC" onclick="clearDisplay()" class="function">
+                    <input type="button" value="DE" onclick="deleteLast()" class="function">
+                    <input type="button" value="." onclick="appendToDisplay('.')" class="number">
+                    <input type="button" value="/" onclick="appendToDisplay('/')" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="7" onclick="appendToDisplay('7')" class="number">
+                    <input type="button" value="8" onclick="appendToDisplay('8')" class="number">
+                    <input type="button" value="9" onclick="appendToDisplay('9')" class="number">
+                    <input type="button" value="*" onclick="appendToDisplay('*')" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="4" onclick="appendToDisplay('4')" class="number">
+                    <input type="button" value="5" onclick="appendToDisplay('5')" class="number">
+                    <input type="button" value="6" onclick="appendToDisplay('6')" class="number">
+                    <input type="button" value="-" onclick="appendToDisplay('-')" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="1" onclick="appendToDisplay('1')" class="number">
+                    <input type="button" value="2" onclick="appendToDisplay('2')" class="number">
+                    <input type="button" value="3" onclick="appendToDisplay('3')" class="number">
+                    <input type="button" value="+" onclick="appendToDisplay('+')" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="00" onclick="appendToDisplay('00')" class="number">
+                    <input type="button" value="0" onclick="appendToDisplay('0')" class="number">
+                    <input type="button" value="=" onclick="calculate()" class="equal">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
