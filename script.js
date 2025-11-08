@@ -37,8 +37,8 @@ document.querySelector('.hamburger').addEventListener('click', function() {
     document.querySelector('.nav-menu').classList.toggle('active');
 });
 
-// Form submission with validation
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+// Form submission with Formspree
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     // Get form data
@@ -69,13 +69,28 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Simulate API call
-    setTimeout(() => {
-        alert(`Thank you, ${formData.name}! Your message has been sent successfully. I will get back to you soon.`);
-        this.reset();
+    try {
+        // Send to Formspree
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            alert(`Thank you, ${formData.name}! Your message has been sent successfully. I will get back to you soon.`);
+            this.reset();
+        } else {
+            alert('There was a problem sending your message. Please try again.');
+        }
+    } catch (error) {
+        alert('There was a network error. Please try again.');
+    } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 2000);
+    }
 });
 
 // Animate skill bars on scroll
@@ -112,6 +127,36 @@ document.getElementById('goTop').addEventListener('click', function() {
     });
 });
 
+// Click on name to refresh page - REFRESH THEN SCROLL (FIXED)
+document.addEventListener('DOMContentLoaded', function() {
+    const homeLink = document.getElementById('home-link');
+    if (homeLink) {
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Set a flag to scroll after refresh
+            localStorage.setItem('scrollToTop', 'true');
+            
+            // Refresh the page
+            location.reload();
+        });
+    }
+    
+    // Check if we need to scroll after refresh - WAIT FOR FULL LOAD
+    if (localStorage.getItem('scrollToTop') === 'true') {
+        // Wait for everything to load completely
+        window.addEventListener('load', function() {
+            // Small delay to ensure everything is rendered
+            setTimeout(function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                localStorage.removeItem('scrollToTop');
+            }, 100);
+        });
+    }
+});
 // Hero Section Slideshow
 let heroCurrentSlide = 0;
 const heroSlides = document.querySelectorAll('.hero-slideshow .slide');
@@ -139,5 +184,9 @@ setInterval(nextHeroSlide, 5000);
 setInterval(nextAboutSlide, 5000);
 
 // Initialize first slides
-heroSlides[0].classList.add('active');
-aboutSlides[0].classList.add('active');
+if (heroSlides.length > 0) {
+    heroSlides[0].classList.add('active');
+}
+if (aboutSlides.length > 0) {
+    aboutSlides[0].classList.add('active');
+}
