@@ -12,7 +12,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Shail Kumar</div>
+            <div class="logo" id="home-link">Shail Kumar</div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -193,7 +193,7 @@
 
         <!-- More Projects Button -->
         <div class="more-projects-btn" style="text-align: center; margin-top: 2rem;">
-            <a href="projects.html" class="btn primary">More Projects</a>
+            <a href="projects.html" class="btn primary" target="_blank">More Projects</a>
         </div>
 
     </div>
@@ -221,26 +221,26 @@
                         <span>New Delhi, </span>
                     </div>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/Shail9349" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/shailkumar007/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/Shail9349" target="_blank"><i class="fab fa-twitter" ></i></a>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn primary">Send Message</button>
-                </form>
+                <form class="contact-form" action="https://formspree.io/f/xnnlaaao" method="POST" id="contactForm">
+    <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+    </div>
+    <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+    </div>
+    <div class="form-group">
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+    </div>
+    <div class="form-group">
+        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn primary">Send Message</button>
+</form>
             </div>
         </div>
     </section>
@@ -248,7 +248,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Shail Kumar. All rights reserved.</p>
+            <p>&copy; 2025 Shail Kumar. All rights reserved.</p>
         </div>
     </footer>
 
