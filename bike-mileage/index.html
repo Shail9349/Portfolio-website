@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Mileage Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-motorcycle"></i> Bike Mileage Calculator</h1>
+            <p>Calculate your bike's fuel efficiency in km/liter</p>
+        </header>
+
+        <main>
+            <div class="calculator-card">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="distance"><i class="fas fa-road"></i> Distance Traveled (km)</label>
+                        <input type="number" id="distance" placeholder="Enter distance in kilometers">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="fuel"><i class="fas fa-gas-pump"></i> Fuel Consumed (liters)</label>
+                        <input type="number" id="fuel" placeholder="Enter fuel in liters">
+                    </div>
+                    
+                    <button id="calculate-btn">
+                        <i class="fas fa-calculator"></i> Calculate Mileage
+                    </button>
+                </div>
+
+                <div class="result-section">
+                    <div class="result-card">
+                        <h3>Your Bike's Mileage</h3>
+                        <div id="result" class="result">--</div>
+                        <p class="unit">kilometers per liter (km/L)</p>
+                    </div>
+                    
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Tips for Better Mileage</h4>
+                        <ul>
+                            <li>Maintain proper tire pressure</li>
+                            <li>Avoid rapid acceleration and braking</li>
+                            <li>Service your bike regularly</li>
+                            <li>Use recommended engine oil</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h3><i class="fas fa-history"></i> Calculation History</h3>
+                <div id="history-list" class="history-list">
+                    <!-- History items will be added here by JavaScript -->
+                </div>
+                <button id="clear-history" class="clear-btn">
+                    <i class="fas fa-trash"></i> Clear History
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Ride Safe, Arrive Safe - Your Journey Matters | Made with <i class="fas fa-heart"></i></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
