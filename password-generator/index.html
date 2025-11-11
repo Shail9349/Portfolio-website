@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="password-app">
+            <!-- Header -->
+            <div class="app-header">
+                <h1><i class="fas fa-lock"></i> Password Generator</h1>
+                <p>Create strong, secure passwords instantly</p>
+            </div>
+
+            <!-- Password Display -->
+            <div class="password-display">
+                <div class="password-output">
+                    <input type="text" id="passwordOutput" readonly>
+                    <button id="copyBtn" class="copy-btn" title="Copy to clipboard">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                    <span class="strength-text" id="strengthText">Very Weak</span>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="settings-section">
+                <h3>Customize Your Password</h3>
+                
+                <!-- Length Control -->
+                <div class="setting-group">
+                    <div class="setting-header">
+                        <label>Password Length</label>
+                        <span class="length-value" id="lengthValue">12</span>
+                    </div>
+                    <input type="range" id="lengthSlider" min="4" max="32" value="12" class="length-slider">
+                    <div class="length-labels">
+                        <span>4</span>
+                        <span>32</span>
+                    </div>
+                </div>
+
+                <!-- Character Options -->
+                <div class="character-options">
+                    <div class="option-group">
+                        <label class="option-label">
+                            <input type="checkbox" id="uppercase" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">Uppercase Letters (A-Z)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" id="lowercase" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">Lowercase Letters (a-z)</span>
+                        </label>
+                    </div>
+                    <div class="option-group">
+                        <label class="option-label">
+                            <input type="checkbox" id="numbers" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">Numbers (0-9)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" id="symbols" checked>
+                            <span class="checkmark"></span>
+                            <span class="option-text">Symbols (!@#$%^&*)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="additional-options">
+                    <label class="option-label">
+                        <input type="checkbox" id="excludeSimilar">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Exclude similar characters (i, l, 1, L, o, 0, O)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="generateBtn" class="generate-btn">
+                    <i class="fas fa-sync-alt"></i> Generate Password
+                </button>
+                <button id="regenerateBtn" class="regenerate-btn">
+                    <i class="fas fa-bolt"></i> Generate New
+                </button>
+            </div>
+
+            <!-- Password History -->
+            <div class="history-section">
+                <div class="history-header">
+                    <h3>Recently Generated</h3>
+                    <button id="clearHistory" class="clear-history-btn">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+                <div id="passwordHistory" class="password-history">
+                    <!-- Password history will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copy Notification -->
+    <div id="copyNotification" class="copy-notification">
+        <i class="fas fa-check"></i> Password copied!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
