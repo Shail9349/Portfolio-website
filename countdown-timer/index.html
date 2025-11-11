@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="timer-app">
+            <!-- Header -->
+            <div class="app-header">
+                <h1><i class="fas fa-clock"></i> Countdown Timer</h1>
+                <p>Track your important moments</p>
+            </div>
+
+            <!-- Timer Display -->
+            <div class="timer-display">
+                <div class="time-circle">
+                    <svg class="progress-ring" width="300" height="300">
+                        <circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="140" cx="150" cy="150"/>
+                    </svg>
+                    <div class="time-text">
+                        <div id="displayTime">00:00:00</div>
+                        <button id="startTimerBtn" class="start-timer-btn">
+                            Start Timer
+                        </button>
+                        <div class="timer-status" id="timerStatus" style="display: none;">Running</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="time-inputs">
+                    <div class="input-group">
+                        <label>Hours</label>
+                        <input type="number" id="hoursInput" min="0" max="23" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Minutes</label>
+                        <input type="number" id="minutesInput" min="0" max="59" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label>Seconds</label>
+                        <input type="number" id="secondsInput" min="0" max="59" value="0">
+                    </div>
+                </div>
+                
+                <div class="preset-buttons">
+                    <button class="preset-btn" data-minutes="5">5 Min</button>
+                    <button class="preset-btn" data-minutes="10">10 Min</button>
+                    <button class="preset-btn" data-minutes="15">15 Min</button>
+                    <button class="preset-btn" data-minutes="30">30 Min</button>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="control-buttons">
+                <button id="pauseBtn" class="control-btn pause" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="resumeBtn" class="control-btn resume" disabled>
+                    <i class="fas fa-redo"></i> Resume
+                </button>
+                <button id="resetBtn" class="control-btn reset">
+                    <i class="fas fa-stop"></i> Reset
+                </button>
+            </div>
+
+            <!-- Notification Toggle -->
+            <div class="settings">
+                <label class="switch">
+                    <input type="checkbox" id="notificationToggle" checked>
+                    <span class="slider"></span>
+                    <span class="label-text">Enable Sound Notification</span>
+                </label>
+            </div>
+
+            <!-- Recent Timers -->
+            <div class="recent-timers">
+                <h3>Recent Timers</h3>
+                <div id="recentList" class="recent-list">
+                    <!-- Recent timers will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Sound -->
+    <audio id="notificationSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

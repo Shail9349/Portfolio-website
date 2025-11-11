@@ -1,0 +1,487 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.timer-app {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.app-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.app-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.app-header p {
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Timer Display */
+.timer-display {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    background: #f8f9fa;
+}
+
+.time-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.progress-ring-circle {
+    stroke: #667eea;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.time-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+#displayTime {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d3748;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 10px;
+}
+
+.timer-status {
+    font-size: 1rem;
+    color: #667eea;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+/* Start Timer Button in Circle */
+.start-timer-btn {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    margin: 15px auto 0;
+}
+
+.start-timer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+}
+
+.start-timer-btn:active {
+    transform: translateY(0);
+}
+
+.start-timer-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Input Section */
+.input-section {
+    padding: 30px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.time-inputs {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    text-align: center;
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.preset-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    padding: 10px 20px;
+    border: 2px solid #667eea;
+    background: white;
+    color: #667eea;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.preset-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Control Buttons */
+.control-buttons {
+    padding: 0 30px 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.control-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pause {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+    color: white;
+}
+
+.resume {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    color: white;
+}
+
+.reset {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: white;
+}
+
+/* Settings */
+.settings {
+    padding: 0 30px 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    background: #cbd5e0;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+.slider:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+}
+
+input:checked + .slider {
+    background: #667eea;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.label-text {
+    color: #4a5568;
+    font-weight: 500;
+}
+
+/* Recent Timers */
+.recent-timers {
+    padding: 0 30px 30px;
+}
+
+.recent-timers h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Recent Timers with Delete Button */
+.recent-item {
+    background: #f7fafc;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    gap: 10px;
+}
+
+.recent-content {
+    flex: 1;
+    cursor: pointer;
+}
+
+.recent-item:hover {
+    background: #edf2f7;
+    transform: translateX(5px);
+}
+
+.recent-time {
+    font-weight: 600;
+    color: #2d3748;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 4px;
+}
+
+.recent-date {
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+.delete-recent-btn {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.delete-recent-btn:hover {
+    background: #fed7d7;
+    color: #e53e3e;
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .app-header {
+        padding: 20px;
+    }
+    
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .timer-display {
+        padding: 20px;
+    }
+    
+    .time-circle {
+        width: 250px;
+        height: 250px;
+    }
+    
+    #displayTime {
+        font-size: 2.5rem;
+    }
+    
+    .start-timer-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+        min-width: 120px;
+    }
+    
+    .input-section, .control-buttons, .settings, .recent-timers {
+        padding: 20px;
+    }
+    
+    .time-inputs {
+        gap: 10px;
+    }
+    
+    .control-buttons {
+        gap: 10px;
+    }
+    
+    .control-btn {
+        min-width: 80px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Scrollbar */
+.recent-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.recent-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.recent-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.recent-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
