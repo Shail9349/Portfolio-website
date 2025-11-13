@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="expense-tracker">
+            <!-- Header -->
+            <div class="app-header">
+                <div class="header-content">
+                    <h1><i class="fas fa-chart-pie"></i> Expense Tracker</h1>
+                    <p>Track all your expenses in one place</p>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Left Panel - Quick Stats & Categories -->
+                <div class="left-panel">
+                    <!-- Period Selector - Now as Dropdown -->
+                    <div class="period-selector">
+                        <h3>View Expenses For</h3>
+                        <div class="dropdown">
+                            <button class="dropdown-btn" id="periodDropdown">
+                                <span id="currentPeriod">Today</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <button class="dropdown-item" data-period="today">Today</button>
+                                <button class="dropdown-item" data-period="week">This Week</button>
+                                <button class="dropdown-item" data-period="month">This Month</button>
+                                <button class="dropdown-item" data-period="year">This Year</button>
+                                <button class="dropdown-item" data-period="all">All Time</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Period Summary -->
+                    <div class="period-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="summary-info">
+                                <div class="summary-value" id="periodTotal">₹0</div>
+                                <div class="summary-label" id="periodLabel">Today's Total</div>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div class="summary-info">
+                                <div class="summary-value" id="transactionCount">0</div>
+                                <div class="summary-label">Transactions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categories Management -->
+                    <div class="categories-section">
+                        <div class="section-header">
+                            <h3>Categories</h3>
+                            <button class="add-category-btn" id="addCategoryBtn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="categoriesList" class="categories-list">
+                            <!-- Categories will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Form & History -->
+                <div class="right-panel">
+                    <!-- Add Expense Form -->
+                    <div class="form-section">
+                        <div class="form-header">
+                            <h3 id="formTitle">Add New Expense</h3>
+                            <button type="button" class="cancel-edit-btn" id="cancelEditBtn" style="display: none;">
+                                <i class="fas fa-times"></i> Cancel Edit
+                            </button>
+                        </div>
+                        <form id="expenseForm" class="expense-form">
+                            <input type="hidden" id="editingExpenseId" value="">
+                            
+                            <div class="form-group">
+                                <label for="expenseTitle">Title *</label>
+                                <input type="text" id="expenseTitle" placeholder="What did you spend on?" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expenseAmount">Amount (₹) *</label>
+                                    <input type="number" id="expenseAmount" placeholder="0.00" required min="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expenseDate">Date *</label>
+                                    <input type="date" id="expenseDate" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expenseCategory">Category *</label>
+                                    <div class="category-select-wrapper">
+                                        <select id="expenseCategory" required>
+                                            <option value="">Select Category</option>
+                                        </select>
+                                        <button type="button" class="quick-add-btn" id="quickAddCategory">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="expenseSubcategory">Subcategory (Optional)</label>
+                                    <input type="text" id="expenseSubcategory" placeholder="e.g., Maths Teacher">
+                                </div>
+                            </div>
+
+                            <!-- Payment Method Field -->
+                            <div class="form-group">
+                                <label for="paymentMethod">Payment Method *</label>
+                                <select id="paymentMethod" required>
+                                    <option value="">Select Payment Method</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="upi">UPI</option>
+                                    <option value="card">Credit/Debit Card</option>
+                                    <option value="bank">Bank Transfer</option>
+                                    <option value="cheque">Cheque</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expenseDescription">Description (Optional)</label>
+                                <textarea id="expenseDescription" placeholder="Add any additional details..."></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn" id="submitBtn">
+                                    <i class="fas fa-plus-circle"></i> Add Expense
+                                </button>
+                                <button type="button" class="clear-btn" id="clearFormBtn">
+                                    <i class="fas fa-broom"></i> Clear
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Expenses History -->
+                    <div class="history-section">
+                        <div class="section-header">
+                            <h3>Expense History</h3>
+                            <div class="history-actions">
+                                <button class="action-btn" id="exportBtn">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                            </div>
+                        </div>
+                        <div id="expensesList" class="expenses-list">
+                            <!-- Expenses will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Category</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="categoryForm">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name *</label>
+                        <input type="text" id="categoryName" placeholder="Enter category name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryColor">Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="categoryColor" value="#667eea">
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-save"></i> Save Category
+                        </button>
+                        <button type="button" class="cancel-btn close-modal">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export Expenses</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <button class="export-option" data-format="json">
+                        <i class="fas fa-file-code"></i>
+                        <span>JSON Format</span>
+                        <small>For backup and data transfer</small>
+                    </button>
+                    <button class="export-option" data-format="csv">
+                        <i class="fas fa-file-csv"></i>
+                        <span>CSV Format</span>
+                        <small>For Excel and Google Sheets</small>
+                    </button>
+                    <button class="export-option" data-format="print">
+                        <i class="fas fa-print"></i>
+                        <span>Print Summary</span>
+                        <small>For physical records</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
