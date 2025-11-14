@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Master - Working Version</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Working QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <!-- Working JsBarcode Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="barcode-app">
+            <!-- Header -->
+            <div class="app-header">
+                <h1><i class="fas fa-barcode"></i> Barcode Master</h1>
+                <p>Generate and manage barcodes easily</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="generator">Generator</button>
+                <button class="tab-btn" data-tab="batch">Batch Generate</button>
+                <button class="tab-btn" data-tab="history">History</button>
+            </div>
+
+            <!-- Generator Tab -->
+            <div class="tab-content active" id="generator">
+                <div class="generator-container">
+                    <div class="input-section">
+                        <h3>Generate Barcode</h3>
+                        
+                        <div class="form-group">
+                            <label for="barcodeData">Text to Encode *</label>
+                            <input type="text" id="barcodeData" placeholder="Enter text, numbers, or URL" value="Hello World">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="barcodeType">Barcode Type</label>
+                                <select id="barcodeType">
+                                    <option value="qrcode">QR Code</option>
+                                    <option value="CODE128">Code 128</option>
+                                    <option value="EAN13">EAN-13</option>
+                                    <option value="CODE39">Code 39</option>
+                                    <option value="UPC">UPC-A</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="barcodeSize">Size</label>
+                                <select id="barcodeSize">
+                                    <option value="small">Small</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="generate-btn" id="generateBtn">
+                            <i class="fas fa-bolt"></i> Generate Barcode
+                        </button>
+                    </div>
+
+                    <div class="preview-section">
+                        <div class="preview-container">
+                            <div id="barcodePreview">
+                                <div class="placeholder">
+                                    <i class="fas fa-barcode"></i>
+                                    <p>Your barcode will appear here</p>
+                                </div>
+                            </div>
+                            <div class="preview-actions">
+                                <button class="download-btn" id="downloadBtn" disabled>
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="save-btn" id="saveBtn" disabled>
+                                    <i class="fas fa-save"></i> Save to History
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batch Tab -->
+            <div class="tab-content" id="batch">
+                <div class="batch-container">
+                    <div class="batch-input">
+                        <h3>Batch Generate</h3>
+                        <div class="form-group">
+                            <label for="batchData">Enter data (one per line)</label>
+                            <textarea id="batchData" rows="6" placeholder="Product 1&#10;Product 2&#10;Product 3">Product 1
+Product 2
+Product 3
+Product 4</textarea>
+                            <div class="counter">
+                                <span id="itemCount">4 items</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="batchType">Barcode Type</label>
+                                <select id="batchType">
+                                    <option value="qrcode">QR Code</option>
+                                    <option value="CODE128">Code 128</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="generate-btn" id="generateBatchBtn">
+                            <i class="fas fa-layer-group"></i> Generate Batch
+                        </button>
+                    </div>
+
+                    <div class="batch-output">
+                        <div class="batch-header">
+                            <h4>Generated Barcodes</h4>
+                            <button class="download-all-btn" id="downloadAllBtn" disabled>
+                                <i class="fas fa-download"></i> Download All
+                            </button>
+                        </div>
+                        <div id="batchResults" class="batch-results">
+                            <div class="placeholder">
+                                <i class="fas fa-cubes"></i>
+                                <p>Batch generated barcodes will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div class="tab-content" id="history">
+                <div class="history-container">
+                    <div class="history-header">
+                        <h3>Barcode History</h3>
+                        <div class="history-actions">
+                            <button class="export-btn" id="exportBtn">
+                                <i class="fas fa-file-export"></i> Export CSV
+                            </button>
+                            <button class="clear-btn" id="clearHistoryBtn">
+                                <i class="fas fa-trash"></i> Clear History
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="history-list" id="historyList">
+                        <div class="empty-state">
+                            <i class="fas fa-history"></i>
+                            <p>No barcodes generated yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
