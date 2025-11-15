@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobTrack - Application & Exam Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1><i class="fas fa-clipboard-list"></i> <span>JobTrack</span></h1>
+                <p>Never miss an exam date again!</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="add-application">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Application</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="applications">
+                        <i class="fas fa-list-alt"></i>
+                        <span>All Applications</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="upcoming-exams">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Upcoming Exams</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="statistics">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="data-management">
+                <button id="exportData" class="btn btn-success btn-block">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+                <button id="importData" class="btn btn-warning btn-block">
+                    <i class="fas fa-upload"></i> Import Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="page-title">
+                    <h2 id="pageTitle">Application Dashboard</h2>
+                    <p id="pageSubtitle">Track all your job applications in one place</p>
+                </div>
+                <div class="header-actions">
+                    <div class="filter-controls">
+                        <select id="statusFilter" class="form-control">
+                            <option value="all">All Status</option>
+                            <option value="applied">Applied</option>
+                            <option value="admitCardDownloaded">Admit Card Downloaded</option>
+                            <option value="examGiven">Exam Given</option>
+                            <option value="resultDeclared">Result Declared</option>
+                            <option value="selected">Selected</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search applications...">
+                    </div>
+                    <div class="notification-bell" id="notificationBell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count" id="notificationCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="content-section active">
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon applications">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalApplications">0</h3>
+                            <p>Total Applications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon exams">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="upcomingExams">0</h3>
+                            <p>Upcoming Exams</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon completed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="completedExams">0</h3>
+                            <p>Completed Exams</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Sections -->
+                <div class="content-sections">
+                    <!-- Recent Applications -->
+                    <section class="section">
+                        <div class="section-header">
+                            <h3 class="section-title">Recent Applications</h3>
+                            <a href="#" class="view-all" data-section="applications">View All</a>
+                        </div>
+                        <div class="applications-list" id="recentApplicationsList">
+                            <!-- Applications will be loaded here -->
+                        </div>
+                    </section>
+
+                    <!-- Upcoming Exams -->
+                    <section class="section">
+                        <div class="section-header">
+                            <h3 class="section-title">Upcoming Exams</h3>
+                            <a href="#" class="view-all" data-section="upcoming-exams">View All</a>
+                        </div>
+                        <div class="upcoming-exams" id="dashboardUpcomingExams">
+                            <!-- Upcoming exams will be loaded here -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Add Application Section -->
+            <div id="add-application" class="content-section">
+                <section class="section">
+                    <div class="section-header">
+                        <h3 class="section-title">Add New Application</h3>
+                    </div>
+                    <form id="applicationForm" class="application-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="jobTitle">Job Title *</label>
+                                <input type="text" id="jobTitle" class="form-control" required placeholder="e.g., RRB NTPC UG">
+                            </div>
+                            <div class="form-group">
+                                <label for="organization">Organization *</label>
+                                <input type="text" id="organization" class="form-control" required placeholder="e.g., Railway Recruitment Board">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="applicationDate">Application Date *</label>
+                                <input type="date" id="applicationDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicationFee">Application Fee (₹)</label>
+                                <input type="number" id="applicationFee" class="form-control" placeholder="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="examDate">Exam Date</label>
+                                <input type="date" id="examDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="admitCardDate">Admit Card Date</label>
+                                <input type="date" id="admitCardDate" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="status">Status *</label>
+                            <select id="status" class="form-control" required>
+                                <option value="applied">Applied</option>
+                                <option value="admitCardDownloaded">Admit Card Downloaded</option>
+                                <option value="examGiven">Exam Given</option>
+                                <option value="resultDeclared">Result Declared</option>
+                                <option value="selected">Selected</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" class="form-control" placeholder="Any additional notes..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Add Application
+                            </button>
+                            <button type="button" id="clearForm" class="btn btn-secondary">
+                                <i class="fas fa-eraser"></i> Clear
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <!-- All Applications Section -->
+            <div id="applications" class="content-section">
+                <section class="section">
+                    <div class="section-header">
+                        <h3 class="section-title">All Applications</h3>
+                        <div class="section-actions">
+                            <button id="addNewApp" class="btn btn-primary" data-section="add-application">
+                                <i class="fas fa-plus"></i> Add New
+                            </button>
+                        </div>
+                    </div>
+                    <div class="applications-list" id="allApplicationsList">
+                        <!-- All applications will be loaded here -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Upcoming Exams Section -->
+            <div id="upcoming-exams" class="content-section">
+                <section class="section">
+                    <div class="section-header">
+                        <h3 class="section-title">Upcoming Exams</h3>
+                    </div>
+                    <div class="upcoming-exams" id="upcomingExamsList">
+                        <!-- Upcoming exams will be loaded here -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Statistics Section -->
+            <div id="statistics" class="content-section">
+                <section class="section">
+                    <div class="section-header">
+                        <h3 class="section-title">Application Statistics</h3>
+                    </div>
+                    <div class="stats-cards">
+                        <div class="stat-card large">
+                            <div class="stat-info">
+                                <h3 id="statTotalApplications">0</h3>
+                                <p>Total Applications</p>
+                            </div>
+                            <div class="stat-chart">
+                                <div class="chart-bar" style="height: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-card large">
+                            <div class="stat-info">
+                                <h3 id="statUpcomingExams">0</h3>
+                                <p>Upcoming Exams</p>
+                            </div>
+                            <div class="stat-chart">
+                                <div class="chart-bar" style="height: 60%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-card large">
+                            <div class="stat-info">
+                                <h3 id="statCompletedExams">0</h3>
+                                <p>Completed Exams</p>
+                            </div>
+                            <div class="stat-chart">
+                                <div class="chart-bar" style="height: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="status-breakdown">
+                        <h4>Applications by Status</h4>
+                        <div class="status-list" id="statusBreakdown">
+                            <!-- Status breakdown will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Application Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Application</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editJobTitle">Job Title *</label>
+                        <input type="text" id="editJobTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editOrganization">Organization *</label>
+                        <input type="text" id="editOrganization" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editApplicationDate">Application Date *</label>
+                        <input type="date" id="editApplicationDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editApplicationFee">Application Fee (₹)</label>
+                        <input type="number" id="editApplicationFee" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editExamDate">Exam Date</label>
+                        <input type="date" id="editExamDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAdmitCardDate">Admit Card Date</label>
+                        <input type="date" id="editAdmitCardDate" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="editStatus">Status *</label>
+                    <select id="editStatus" class="form-control" required>
+                        <option value="applied">Applied</option>
+                        <option value="admitCardDownloaded">Admit Card Downloaded</option>
+                        <option value="examGiven">Exam Given</option>
+                        <option value="resultDeclared">Result Declared</option>
+                        <option value="selected">Selected</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="editNotes">Notes</label>
+                    <textarea id="editNotes" class="form-control"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Update Application
+                    </button>
+                    <button type="button" id="cancelEdit" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button id="closeNotifications">&times;</button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Notifications will be loaded here -->
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
