@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator | Calculate Your Exact Age</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <h1>Age Calculator</h1>
+            </div>
+            <p class="tagline">Find out your exact age in years, months, and days</p>
+        </header>
+
+        <main>
+            <div class="calculator-card">
+                <div class="input-section">
+                    <h2><i class="fas fa-birthday-cake"></i> Enter Your Birth Date</h2>
+                    
+                    <div class="date-inputs">
+                        <div class="input-group">
+                            <label for="day"><i class="far fa-calendar-day"></i> Day</label>
+                            <input type="number" id="day" placeholder="DD" min="1" max="31">
+                            <div class="error" id="day-error"></div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="month"><i class="far fa-calendar-alt"></i> Month</label>
+                            <select id="month">
+                                <option value="" disabled selected>Month</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            <div class="error" id="month-error"></div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="year"><i class="far fa-calendar"></i> Year</label>
+                            <input type="number" id="year" placeholder="YYYY" min="1900" max="2024">
+                            <div class="error" id="year-error"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button id="calculate-btn" class="btn calculate">
+                            <i class="fas fa-calculator"></i> Calculate Age
+                        </button>
+                        <button id="reset-btn" class="btn reset">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h2><i class="fas fa-chart-bar"></i> Your Age</h2>
+                    
+                    <div class="result-display">
+                        <div class="age-result">
+                            <div class="result-box">
+                                <div class="result-number" id="years">--</div>
+                                <div class="result-label">Years</div>
+                            </div>
+                            <div class="result-box">
+                                <div class="result-number" id="months">--</div>
+                                <div class="result-label">Months</div>
+                            </div>
+                            <div class="result-box">
+                                <div class="result-number" id="days">--</div>
+                                <div class="result-label">Days</div>
+                            </div>
+                        </div>
+                        
+                        <div class="total-days">
+                            <p><i class="far fa-calendar-check"></i> Total Days: <span id="total-days">0</span></p>
+                        </div>
+                        
+                        <div class="zodiac-sign">
+                            <p><i class="fas fa-star"></i> Zodiac Sign: <span id="zodiac">--</span></p>
+                        </div>
+                        
+                        <div class="next-birthday">
+                            <p><i class="fas fa-birthday-cake"></i> Next Birthday: <span id="next-bday">--</span></p>
+                            <p><i class="far fa-clock"></i> Days until next birthday: <span id="days-to-bday">--</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>How it works</h3>
+                    <p>Enter your birth date and click "Calculate Age" to get your exact age in years, months, and days. Our calculator accounts for leap years and different month lengths.</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-history"></i>
+                    <h3>Time Perspective</h3>
+                    <p>This tool helps you understand how much time has passed since your birth and how much time remains until your next birthday.</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Privacy First</h3>
+                    <p>Your data is processed locally in your browser. We don't store or transmit any personal information to external servers.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© <span id="current-year">2024</span> Age Calculator | Made with <i class="fas fa-heart"></i> for everyone</p>
+            <p class="footer-note">This tool is for informational purposes only. All calculations are based on the Gregorian calendar.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
