@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* ===== RESET AND BASE ===== */
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +37,7 @@ body {
     margin: 0 auto;
 }
 
-/* Header Styles */
+/* ===== HEADER ===== */
 header {
     text-align: center;
     margin-bottom: 40px;
@@ -50,6 +50,7 @@ header {
     justify-content: center;
     gap: 15px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .logo i {
@@ -73,7 +74,7 @@ header {
     margin-top: 10px;
 }
 
-/* Calculator Card */
+/* ===== CALCULATOR CARD ===== */
 .calculator-card {
     background-color: white;
     border-radius: var(--border-radius);
@@ -85,13 +86,7 @@ header {
     gap: 40px;
 }
 
-@media (max-width: 992px) {
-    .calculator-card {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Input Section */
+/* ===== INPUT SECTION ===== */
 .input-section h2, .result-section h2 {
     font-size: 1.8rem;
     margin-bottom: 25px;
@@ -110,12 +105,6 @@ header {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-bottom: 30px;
-}
-
-@media (max-width: 576px) {
-    .date-inputs {
-        grid-template-columns: 1fr;
-    }
 }
 
 .input-group {
@@ -163,7 +152,7 @@ header {
     margin-top: 5px;
 }
 
-/* Buttons */
+/* ===== BUTTONS ===== */
 .button-container {
     display: flex;
     gap: 15px;
@@ -207,7 +196,7 @@ header {
     transform: translateY(-3px);
 }
 
-/* Result Section */
+/* ===== RESULT SECTION ===== */
 .result-section {
     display: flex;
     flex-direction: column;
@@ -284,24 +273,12 @@ header {
     margin-bottom: 0;
 }
 
-/* Info Section */
+/* ===== INFO SECTION ===== */
 .info-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin-bottom: 40px;
-}
-
-@media (max-width: 992px) {
-    .info-section {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .info-section {
-        grid-template-columns: 1fr;
-    }
 }
 
 .info-card {
@@ -334,7 +311,7 @@ header {
     line-height: 1.6;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
     padding: 25px;
@@ -361,7 +338,7 @@ footer i.fa-heart {
     color: var(--primary-color);
 }
 
-/* Animation for results */
+/* ===== ANIMATIONS ===== */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -371,26 +348,250 @@ footer i.fa-heart {
     animation: fadeIn 0.5s ease forwards;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
+/* =========================================== */
+/* ========== RESPONSIVE FIXES BELOW ========= */
+/* =========================================== */
+
+/* Tablet (768px to 1023px) */
+@media (max-width: 1023px) {
+    .calculator-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 25px;
     }
     
-    .calculator-card {
-        padding: 20px;
+    .info-section {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .logo h1 {
         font-size: 2.2rem;
     }
     
+    .tagline {
+        font-size: 1.1rem;
+    }
+}
+
+/* Large Mobile (576px to 767px) */
+@media (max-width: 767px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+    
+    .logo i {
+        font-size: 2.2rem;
+    }
+    
+    .input-section h2, .result-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .date-inputs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .age-result {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
     .result-number {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
+    }
+    
+    .button-container {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Small Mobile (up to 575px) */
+@media (max-width: 575px) {
+    body {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 15px 0;
+        margin-bottom: 25px;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    
+    .calculator-card {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .input-section h2, .result-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    
+    .date-inputs {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .input-group input, .input-group select {
+        padding: 14px;
+        font-size: 1rem;
+    }
+    
+    .age-result {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .result-box {
+        padding: 20px 10px;
+    }
+    
+    .result-number {
+        font-size: 2.2rem;
+    }
+    
+    .result-label {
+        font-size: 1rem;
+    }
+    
+    .total-days, .zodiac-sign, .next-birthday {
+        padding: 15px;
+    }
+    
+    .total-days p, .zodiac-sign p, .next-birthday p {
+        font-size: 1rem;
+    }
+    
+    .info-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .info-card {
+        padding: 20px;
+    }
+    
+    .info-card i {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .info-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    footer {
+        padding: 20px 15px;
+    }
+    
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Very Small Mobile (up to 375px) */
+@media (max-width: 375px) {
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .input-section h2, .result-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .result-number {
+        font-size: 2rem;
     }
     
     .btn {
         padding: 14px 20px;
         font-size: 1rem;
+    }
+}
+
+/* Landscape Mode Fixes */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+    
+    header {
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        display: none;
+    }
+    
+    .calculator-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .info-section {
+        display: none;
+    }
+}
+
+/* Prevent zoom on iOS input focus */
+@media (max-width: 767px) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Ensure buttons are touch-friendly on mobile */
+@media (max-width: 767px) {
+    .btn {
+        min-height: 50px;
+    }
+    
+    .input-group input, .input-group select {
+        min-height: 50px;
+    }
+}
+
+/* Fix for foldable phones */
+@media (max-width: 350px) {
+    .container {
+        padding: 0 5px;
+    }
+    
+    .calculator-card {
+        padding: 15px;
+    }
+    
+    .result-number {
+        font-size: 1.8rem;
     }
 }
