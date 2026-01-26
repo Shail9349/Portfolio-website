@@ -1,3 +1,5 @@
+// Age Calculator - Works on all devices
+
 // DOM Elements
 const dayInput = document.getElementById('day');
 const monthSelect = document.getElementById('month');
@@ -289,4 +291,34 @@ window.addEventListener('load', function() {
     dayInput.value = exampleDate.getDate();
     monthSelect.value = exampleDate.getMonth() + 1;
     yearInput.value = exampleDate.getFullYear();
+});
+
+// Mobile-specific improvements
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevent zoom on input focus (iOS)
+    document.addEventListener('touchstart', function(event) {
+        if (event.target.tagName === 'INPUT' || event.target.tagName === 'SELECT') {
+            event.target.style.fontSize = '16px';
+        }
+    });
+    
+    // Auto-advance inputs on mobile
+    dayInput.addEventListener('input', function() {
+        if (this.value.length === 2) {
+            monthSelect.focus();
+        }
+    });
+    
+    monthSelect.addEventListener('change', function() {
+        if (this.value) {
+            yearInput.focus();
+        }
+    });
+    
+    // Hide keyboard after calculation on mobile
+    calculateBtn.addEventListener('click', function() {
+        if ('ontouchstart' in window) {
+            document.activeElement.blur();
+        }
+    });
 });
